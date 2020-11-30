@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/show'
+  devise_for :users
   resources :songs
   resources :movies
   root  'static_pages#home'
