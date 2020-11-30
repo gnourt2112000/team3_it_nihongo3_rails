@@ -15,6 +15,28 @@
   <%= @movie.content %>
 </p>
 
+<h3>Review List</h3>
+  <ul>
+    <% @movie.movie_review.each do |movie_review|%>
+      <li><%= movie_review.review %>
+      (<%= movie_review.user.name %>)</li>
+    <% end %>
+  </ul>
+  
+<%= form_with(model: @movie_review, local: true) do |form| %>
+    <%= form.hidden_field :user_id, :value => current_user.id %>
+    <%= form.hidden_field :movie_id, :value => @movie.id %>
+
+  <div class="field">
+    <%= form.label :review %>
+    <%= form.text_area :review %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+
 <%= link_to 'SHOW OST',songs_path%>|
 <%= link_to 'Edit', edit_movie_path(@movie) %> |
 <%= link_to 'Back', movies_path %>

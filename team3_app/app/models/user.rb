@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
   has_one_attached :avatar
+  has_many :movie_review, -> { order "created_at DESC"}
   
   validates :name, presence: true
   validates :age, presence: true
